@@ -17,7 +17,6 @@ public class FileWordAnalyzer {
      * Cleans a word for better visibility.
      * Call by adding .(map::cleanWord).filter(word -> !word.equals("")) to the stream
      *
-     *
      * @param word, the word which you wish to clean
      * @return cleaned of white spaces and special characters
      */

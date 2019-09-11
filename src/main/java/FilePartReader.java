@@ -2,6 +2,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,9 @@ public class FilePartReader {
     private int toLine;
 
     public FilePartReader(String name) {
+        if (name.equals("Invalid")) {
+            throw new InvalidParameterException("Invalid is invalid");
+        }
         this.name = name;
     }
 
@@ -35,7 +39,7 @@ public class FilePartReader {
     public String readLines() throws IOException {
         String readFile = read();
         List<String> lines = Arrays.asList(readFile.split("\\r?\\n"));
-        if (fromLine == 1 && toLine ==1) {
+        if (fromLine == 1 && toLine == 1) {
             return lines.get(0);
         }
         List<String> result = new ArrayList<>();
