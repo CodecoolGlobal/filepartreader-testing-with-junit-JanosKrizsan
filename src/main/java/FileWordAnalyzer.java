@@ -13,12 +13,24 @@ public class FileWordAnalyzer {
         this.readFile = Arrays.asList(filePartReader.readLines().split(" "));
     }
 
+    /**
+     * Cleans a word for better visibility.
+     * Call by adding .(map::cleanWord).filter(word -> !word.equals("")) to the stream
+     *
+     *
+     * @param word, the word which you wish to clean
+     * @return cleaned of white spaces and special characters
+     */
+    private String cleanWord(String word) {
+        return word.replaceAll("[^a-zA-Z]+", "").trim();
+    }
+
     public List getWordsOrderedAlphabetically() {
-        return readFile.stream().sorted().collect(Collectors.toList());
+        return readFile.stream().map(this::cleanWord).filter(word -> !word.equals("")).sorted().collect(Collectors.toList());
     }
 
     public List getWordsContainingSubString(String subString) {
-        return readFile.stream().filter(word -> word.contains(subString)).collect(Collectors.toList());
+        return readFile.stream().map(this::cleanWord).filter(word -> !word.equals("")).filter(word -> word.contains(subString)).collect(Collectors.toList());
     }
 
     private boolean isWordPalindrome(String word) {
@@ -29,7 +41,7 @@ public class FileWordAnalyzer {
     }
 
     public List getWordsWhichPalindromes() {
-        return readFile.stream().filter(this::isWordPalindrome).collect(Collectors.toList());
+        return readFile.stream().map(this::cleanWord).filter(word -> !word.equals("")).filter(this::isWordPalindrome).collect(Collectors.toList());
     }
 
 }

@@ -1,5 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +28,7 @@ public class FilePartReader {
     }
 
     public String read() throws IOException {
-        FileReader readFile = new FileReader(filePath);
+        List<String> readFile = Files.readAllLines(Paths.get(filePath));
         return readFile.toString();
     }
 
