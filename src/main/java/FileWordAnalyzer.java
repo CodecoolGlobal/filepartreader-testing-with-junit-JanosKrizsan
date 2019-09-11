@@ -36,7 +36,7 @@ public class FileWordAnalyzer {
         String checkedWord = word.replaceAll("\\s+", "").toLowerCase();
         StringBuffer normal = new StringBuffer(checkedWord);
         StringBuffer reverse = normal.reverse();
-        return reverse.reverse().toString().equals(checkedWord);
+        return reverse.toString().equals(checkedWord);
     }
 
     public List getWordsWhichPalindromes() {

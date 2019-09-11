@@ -37,20 +37,18 @@ public class FilePartReader {
     }
 
     public String readLines() throws IOException {
-        String readFile = read();
-        List<String> lines = Arrays.asList(readFile.split("\\r?\\n"));
+        String readFile = read().trim();
+        List<String> lines = Arrays.asList(readFile.split("\\r?[^a-zA-Z]+"));
         if (fromLine == 1 && toLine == 1) {
             return lines.get(0);
         }
         List<String> result = new ArrayList<>();
         int lineCounter = 1;
-        while (lineCounter != toLine) {
-            for (String line : lines) {
-                if (lineCounter > fromLine) {
-                    result.add(line);
-                }
-                lineCounter++;
+        for (String line : lines) {
+            if (lineCounter > fromLine && lineCounter < toLine) {
+                result.add(line);
             }
+            lineCounter++;
         }
         return result.toString();
     }

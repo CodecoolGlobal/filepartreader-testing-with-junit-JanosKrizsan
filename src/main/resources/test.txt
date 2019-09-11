@@ -1,0 +1,6 @@
+alpha
+gamma
+beta
+delta
+omega
+gog
